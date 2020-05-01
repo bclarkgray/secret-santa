@@ -27,25 +27,28 @@ class Santa(object):
         self.secret_dict = dict()
         
     
-    def set_number(self, setN = None):
+    def set_number(self, setN):
         if (setN == None):
             self.nb_ppl = int(input("\nHow many people are participating to the Secret Santa ? --> "))
         else:
             self.nb_ppl = setN
 
 
-    def set_names(self, list_names = None):
+    def set_names(self, list_names):
         if (list_names == None):
             for i in range(self.nb_ppl):
                 self.list_ppl.append(input("\nEnter person number " + str(i+1) + "'s name --> "))
         else:
             for i in range(self.nb_ppl):
-                self.list_ppl = list_names
+                self.list_ppl = list_names[0:self.nb_ppl]
 
 
-    def set_emails(self):
-        for elem in self.list_ppl:
-            self.email_dict[elem] = input("\nEnter " + elem + "'s EMAIL --> ")
+    def set_emails(self, email_dict):
+        if (email_dict == None):
+            for elem in self.list_ppl:
+                self.email_dict[elem] = input("\nEnter " + elem + "'s EMAIL --> ")
+        else:
+            self.email_dict = email_dict
 
 
     def gen_secrets(self):
